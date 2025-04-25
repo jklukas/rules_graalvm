@@ -135,7 +135,10 @@ def _graal_binary_implementation(ctx):
     }
 
     graal_actions = _wrap_actions_for_graal(ctx.actions)
-    if is_macos:
+    # AIMS-PTR patch: we don't want to require a full installation of XCode, which apple_support needs;
+    # we skip this block and rely on toolchains_llvm instead. We hardcode to False.
+    # if is_macos:
+    if False:
         xcode_args = ctx.actions.args()
 
         # Bazel passes DEVELOPER_DIR and SDKROOT to every locally executed action that sets the
